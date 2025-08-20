@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airbnb Clone</title>
+  <link rel="stylesheet" href="test.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+     .side-dropdown {
+      position: absolute;
+      top: 100px; /* adjust to navbar height */
+      right: 20px;
+      background: white;
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      width: 250px;
+      display: none;
+      z-index: 9999;
+    }
+
+    .side-dropdown.show {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .side-dropdown hr {
+      margin: 0.75rem 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .popover-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+.popover-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  max-width: 500px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  z-index: 1050;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: popIn 0.25s ease;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg shadow-sm sticky-top py-3" style="background-color: rgb(240, 239, 239);">
+  <div class="container-fluid flex-column px-4">
+
+    <div class="d-sm-block d-md-none px-3 mt-2">
+  <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm w-100">
+    <i class="bi bi-search"></i> Start your search
+  </button>
+</div>
+    <!-- Top Row -->
+    <div class="d-flex justify-content-between align-items-center w-100 py-2">
+    <!-- Logo -->
+    <a class="navbar-brand d-none d-md-block" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" width="100" alt="Airbnb">
+    </a>
+
+    <!-- Menu Tabs -->
+    <ul class="nav nav-underline mx-auto d-flex justify-content-between align-items-center d-sm-flex mt-2">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+          <img src="img1/download (2).png" alt="" width="50" height="30" >Homes
+        </a>
+      </li>
+      <li class="nav-item mx-4">
+        <a class="nav-link text-dark" href="#">
+          <img src="img1/download.png" alt="" width="60">Experiences
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="#">
+          <img src="img1/download (1).png" alt="" width="60">Services
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right Section -->
+   <div class="d-flex align-items-center gap-3 d-none d-md-flex">
+        <a href="#" class="fw-bold text-dark d-none d-md-block text-decoration-none">Become a host</a>
+        <button class="btn btn-light rounded-circle" id="openPopover">
+          <i class="bi bi-globe2"></i>
+        </button>
+
+        <!-- <div class="popover-backdrop d-none" id="popoverBackdrop"></div> -->
+          <!-- Center Popover -->
+          <!-- <div class="popover-center d-none" id="popoverBox">
+            <h5 class="mb-3">Choose a language</h5>
+            <p class="mb-0">English</p>
+            <hr>
+            <p class="mb-0">More languages coming soon...</p>
+            <div class="text-end mt-3">
+              <button class="btn btn-sm btn-outline-secondary" id="closePopover">Close</button>
+            </div>
+        </div> -->
+
+<!-- Backdrop -->
+<div id="popoverBackdrop" class="popover-backdrop d-none"></div>
+
+<!-- Popover -->
+<div id="popoverBox" class="popover-center d-none">
+  <!-- Close Button -->
+  <div class="d-flex justify-content-end">
+    <button id="closePopover" class="btn btn-sm btn-outline-secondary">&times;</button>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="langCurrencyTabs">
+    <li class="nav-item">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#languagesTab">Languages</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#currencyTab">Currencies</button>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content mt-3">
+    <!-- Languages Tab -->
+    <div class="tab-pane fade show active" id="languagesTab">
+      <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center">
+          <img src="https://flagcdn.com/w20/us.png" class="me-2"> English (US)
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <img src="https://flagcdn.com/w20/fr.png" class="me-2"> Français
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <img src="https://flagcdn.com/w20/es.png" class="me-2"> Español
+        </li>
+      </ul>
+    </div>
+
+    <!-- Currency Tab -->
+    <div class="tab-pane fade" id="currencyTab">
+      <ul class="list-group">
+        <li class="list-group-item">$ USD – United States Dollar</li>
+        <li class="list-group-item">€ EUR – Euro</li>
+        <li class="list-group-item">₦ NGN – Nigerian Naira</li>
+        <li class="list-group-item">£ GBP – British Pound</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+        <button id="menuBtn" class="btn btn-light rounded-circle">
+          <i class="bi bi-list" style="font-size: 1.2rem;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Panel -->
+  <div id="sideDropdown" class="side-dropdown">
+    <a href="Help.html" class="text-decoration-none text-dark">
+    <p><i class="bi bi-question-circle"></i> Help Center</p>
+    </a>
+    <hr>
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <strong>Become a host</strong><br>
+        <small>It's easy to start hosting and earn extra income.</small>
+      </div>
+      <img src="img1/download (2).png" alt="Host" style="width:50px; height:40px; border-radius:8px;">
+    </div>
+    <hr>
+    <p>Find a co-host</p>
+    <p>Gift cards</p>
+    <hr>
+    <p>Log in or sign up</p>
+  </div>
+
+<!-- Bottom Row: Search Bar -->
+<div class="search-bar shadow-sm mt-2 d-none d-md-flex bg-white shadow rounded-pill d-flex align-items-center px-3 py-2">
+<!-- <div class="d-flex justify-content-center mt-4 search-bar-wrapper"> -->
+  <!-- <div class="bg-white shadow rounded-pill d-flex align-items-center px-3 py-2" style="width: 800px;"> -->
+    <div class="search-item px-4 pe-5 d-flex flex-column">
+        <strong>Where</strong>
+        <span>Search destinations</span>
+      </div>
+      <div class="divider" style="width: 1px; height: 30px; background-color: rgb(226, 225, 225);"></div>
+      <div class="search-item px-4 pe-5 d-flex flex-column">
+        <strong>Check in</strong>
+        <span>Add dates</span>
+      </div>
+      <div class="divider" style="width: 1px; height: 30px; background-color: rgb(226, 225, 225);"></div>
+      <div class="search-item px-4 pe-5 d-flex flex-column">
+        <strong>Check out</strong>
+        <span>Add dates</span>
+      </div>
+      <div class="divider" style="width: 1px; height: 30px; background-color: rgb(226, 225, 225);"></div>
+      <div class="search-item px-4 pe-5 d-flex flex-column">
+        <strong>Who</strong>
+        <span>Add guests</span>
+      </div>
+      <button class="btn btn-danger rounded-circle ms-2">
+        <i class="bi bi-search text-white"></i>
+      </button>
+    </div>
+
+    <!-- Mobile: Collapsed Search Button -->
+    <!-- <div class="d-flex justify-content-center mt-2 d-md-none">
+      <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm w-100">
+        <i class="bi bi-search"></i> Where to?
+      </button>
+    </div>
+ -->
+  </div>
+</nav>
+
+
+
+
+<section>
+    <div class="container grid">
+    <p class="h5 mt-5 fw-bold">Popular homes in Paris</p>
+    <div class="scroll-container">
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col card bg-light">
+        <div class="position-relative">
+        <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Condo in Paris</p>
+        <p class="font">$239 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
+    </div>
+
+    <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/09836213-5cb1-42da-aa42-41bdc6b4572a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$155 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.82</p>
+    </div>
+
+     <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/12bc582a-d987-4ab1-9ac8-da16c5f4fc6e.webp" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$136 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.96</p>
+    </div>
+
+     <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/1347ba81-0b40-4735-a2b7-1d50b0f8a998.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Paris</p>
+      <p class="font">$202 for 2 nights<i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.83</p>
+    </div>
+
+     <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/15341d99-a35c-47a6-86fe-4b67787426c8.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Ivrysur-Seine</p>
+      <p class="font">$135 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
+    </div>
+
+     <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/15ba35ed-d48c-4bfa-b959-06611f96f9e7.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$264 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
+    </div>
+
+     <div class="col card bg-light">
+      <div class="position-relative">
+      <img src="img1/165f2af7-a79f-44fd-936e-de18eb32994d.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$162 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
+    </div>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Stay in London</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Poplar</p>
+        <p class="font">$182 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/1c16af25-3d26-40bd-9a71-54c3cbfb4615 (1).avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$114 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.78</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/206d2cb4-338d-4598-be51-769bfee01d7a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$149 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/214065b3-67ec-4c37-bd44-b4a4e49ea420.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$142 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.96</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/299559eb-3613-4b16-aed6-79286fa2e771.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$168 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.84</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/2a466bb0-5738-47d1-b42b-345da9dadd3a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$165 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/2caf784c-7bfe-4098-8be0-99735e95cec9.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in London</p>
+      <p class="font">$233 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.9</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Places to stay in Sao Paulo</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Bela Vista</p>
+        <p class="font">$86 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/2eaebba5-521a-4cd4-a6a3-efa485ebf059.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Pinheiros</p>
+      <p class="font">$102 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/307672a3-cbec-4394-b7b7-4549839824ab.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Bom Retiro</p>
+      <p class="font">$81 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.91</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/3624d857-6f2a-4308-804e-5e3667f9d48b.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Bela Vista</p>
+      <p class="font">$156 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/39a2363e-e446-448d-8b93-22fa484bc4f4.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Consolacao</p>
+      <p class="font">$86 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.84</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/3cd1e0e8-5592-436e-b975-63dfce23b234.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Vila Mariana</p>
+      <p class="font">$185 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4090f5cf-4592-40db-b1b5-f5cbcdb94a1f.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Republica</p>
+      <p class="font">$49 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Places to stay in Seoul</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Guesthouse in Seoul</p>
+        <p class="font">$110 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/4437d5e6-d0fb-4149-bd3b-aab4bf8c9c7c.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Mapo-gu</p>
+      <p class="font">$70 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.85</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/47cd412f-c7f9-455f-a1a0-2c57782e3338.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Home in Seoul</p>
+      <p class="font">$643 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/480fe312-3399-45f7-9796-ee3bccc80796.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Seoul</p>
+      <p class="font">$393 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/48aeb0a5-b786-4522-91b5-03ef83201579.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Seoul</p>
+      <p class="font">$77 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.96</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4a9a7858-b62a-46a8-9972-ac84a2139196.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Guesthouse in Seoul</p>
+      <p class="font">$76 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4b5ce438-60a5-4c28-9c7f-50e83af33b6b.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Jongno-gu</p>
+      <p class="font">$172 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"> 4.94</i></p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Homes in Toronto</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Yorkville</p>
+        <p class="font">$123 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.87</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/53f5febf-44a8-4813-af27-af56d03e556e.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Rosedale</p>
+      <p class="font">$115 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.79</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/5cf4bcac_original.webp" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Forest Hill</p>
+      <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/5f4012b1-b3ea-4fa9-bdbf-eb05c214d577.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Lawrence Park</p>
+      <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/651a97b7-a6ef-4660-9a46-6220fdda4dd2.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Spadina</p>
+      <p class="font">$98 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/67d34393-8606-4450-b142-c6d9bdaa1723.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Little Italy</p>
+      <p class="font">$85 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.69</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/680af723-aee7-4661-b224-d92b2569feab.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Toronto</p>
+      <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Stay in Cape Town</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Camps Bay</p>
+        <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/09836213-5cb1-42da-aa42-41bdc6b4572a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Newlands</p>
+      <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.56</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/12bc582a-d987-4ab1-9ac8-da16c5f4fc6e.webp" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Gardens</p>
+      <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.88</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/1347ba81-0b40-4735-a2b7-1d50b0f8a998.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Muizenberg</p>
+      <p class="font">$235 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/15341d99-a35c-47a6-86fe-4b67787426c8.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Hout Bay</p>
+      <p class="font">$260 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.97</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/15ba35ed-d48c-4bfa-b959-06611f96f9e7.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Cape Peninsula</p>
+      <p class="font">$180 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/165f2af7-a79f-44fd-936e-de18eb32994d.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Sea point</p>
+      <p class="font">$185 for in nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.59</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Places to stay in Ikeja</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Ikeja</p>
+        <p class="font">$70 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/1c16af25-3d26-40bd-9a71-54c3cbfb4615 (1).avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Opebi</p>
+      <p class="font">$90 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 3.99</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/206d2cb4-338d-4598-be51-769bfee01d7a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Magodo</p>
+      <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.55</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/214065b3-67ec-4c37-bd44-b4a4e49ea420.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Alausa</p>
+      <p class="font">$70 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.25</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/299559eb-3613-4b16-aed6-79286fa2e771.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Maryland</p>
+      <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/2a466bb0-5738-47d1-b42b-345da9dadd3a.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Ikeja</p>
+      <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/2caf784c-7bfe-4098-8be0-99735e95cec9.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Maryland</p>
+      <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Check out homes in Abuja</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Maitama</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/2eaebba5-521a-4cd4-a6a3-efa485ebf059.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Asokoro</p>
+      <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.99</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/307672a3-cbec-4394-b7b7-4549839824ab.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Guzape</p>
+      <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/3624d857-6f2a-4308-804e-5e3667f9d48b.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Katampe Extn</p>
+      <p class="font">$180 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/39a2363e-e446-448d-8b93-22fa484bc4f4.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Jabi</p>
+      <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.68</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/3cd1e0e8-5592-436e-b975-63dfce23b234.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Garki</p>
+      <p class="font">$85 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.88</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4090f5cf-4592-40db-b1b5-f5cbcdb94a1f.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Apo</p>
+      <p class="font">$85 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.85</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Popular homes in Johannesburg</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Sandton</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.66</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/4437d5e6-d0fb-4149-bd3b-aab4bf8c9c7c.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Bayanston</p>
+      <p class="font">$250 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/47cd412f-c7f9-455f-a1a0-2c57782e3338.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Apartment in Melville</p>
+      <p class="font">$190 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.67</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/480fe312-3399-45f7-9796-ee3bccc80796.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Rosebank</p>
+      <p class="font">$240 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.75</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/48aeb0a5-b786-4522-91b5-03ef83201579.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Maboneng Precint</p>
+      <p class="font">$230 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.68</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4a9a7858-b62a-46a8-9972-ac84a2139196.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Bedfordview</p>
+      <p class="font">$290 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.80</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/4b5ce438-60a5-4c28-9c7f-50e83af33b6b.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Johannesburg</p>
+      <p class="font">$300 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
+    </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+    <p class="h5 mt-5 fw-bold">Stay in Calgary</p>
+    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Calgary</p>
+        <p class="font">$200 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.78</p>
+    </div>
+
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/53f5febf-44a8-4813-af27-af56d03e556e.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Bayview</p>
+      <p class="font">$165 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/5cf4bcac_original.webp" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Bearspaw</p>
+      <p class="font">$235 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/5f4012b1-b3ea-4fa9-bdbf-eb05c214d577.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Britannia</p>
+      <p class="font">$215 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.99</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/651a97b7-a6ef-4660-9a46-6220fdda4dd2.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Riverbend</p>
+      <p class="font">$230 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.86</p>
+    </div>
+
+     <div class="col">
+      <div class="position-relative">
+      <img src="img1/67d34393-8606-4450-b142-c6d9bdaa1723.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Bayview</p>
+      <p class="font">$235 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
+    </div>
+
+     <div class="col mb-5">
+      <div class="position-relative">
+      <img src="img1/680af723-aee7-4661-b224-d92b2569feab.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Calgary</p>
+      <p class="font">$210 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+    </div>
+</section>
+
+<section class="container-fluid" style="background-color: rgb(240, 239, 239);">
+
+  <div class="container-fluid" style="background-color: rgb(240, 239, 239);">
+    <p class="h4 fw-bold pt-5">Inspiration for future gateways</p>
+    <nav>
+      <div class="nav nav-underline" id="nav-tab" role="tablist">
+        <button class="nav-link active text-dark" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Unique stays</button>
+        <button class="nav-link text-dark" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Travel tips and inspiration</button>
+        <button class="nav-link text-dark" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Airbnb-friendly apartments</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"><div class=" row unique">
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Cabin</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Treehouses</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Glaming</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Tiny Houses</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Beach Houses</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Campers and RV</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Lake Houses</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Yurt Rentals</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Yurt Rentals</strong></p>
+                        <p class="second">United Kingdom</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Castle Rentals</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Houseboats</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Holiday Caravans</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Private Island Rentals</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Farm Houses</strong></p>
+                        <p class="second">United States</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Farm Cottages</strong></p>
+                        <p class="second">United Kingdom</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Cabin Rentals</strong></p>
+                        <p class="second">Australia</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>Luxary Cabins</strong></p>
+                        <p class="second">United Kingdom</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p class="first"><strong>See More</strong></p>
+                        <p class="second"></p>
+                    </div>
+                </div>
+              </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><div class="row unique">
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Family travel hub</strong></p>
+                        <p class="second">Tips and inspiration</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Family travel budget</strong></p>
+                        <p class="second">Get there for less</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Family ideas for any budget</strong></p>
+                        <p class="second">Make it special without making it special</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Travel Europe on a budget</strong></p>
+                        <p class="second">How to take the kids to Europe for</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Outdoor Adventures</strong></p>
+                        <p class="second">Eplore nature with the family</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Bucket list natural</strong></p>
+                        <p class="second">Must see parks for family travel</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Friendly stay parks</strong></p>
+                        <p class="second">Check out these fsmily friendly hi</p>
+                    </div>
+                </div>
+              </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"> <div class="row unique">
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Alantia Metro</strong></p>
+                        <p class="second">Georgia</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Augusta</strong></p>
+                        <p class="second">Georgia</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Baton Rouge</strong></p>
+                        <p class="second">Louisiana</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Birmingham</strong></p>
+                        <p class="second">Alabama</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Boise</strong></p>
+                        <p class="second">Idaho</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Boston Metro</strong></p>
+                        <p class="second">Massachusett</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Boulder</strong></p>
+                        <p class="second">Colorado</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Charlotte</strong></p>
+                        <p class="second">North Carolina</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Chicago Metro</strong></p>
+                        <p class="second">Illinois</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Cincinnatis</strong></p>
+                        <p class="second">Ohio</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Columbia</strong></p>
+                        <p class="second">South Carolina</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Columbus</strong></p>
+                        <p class="second">Ohio</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Dallas</strong></p>
+                        <p class="second">Texas</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Denvar</strong></p>
+                        <p class="second">Colorado</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Fayetteville</strong></p>
+                        <p class="second">North Carolina</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Fort Worth</strong></p>
+                        <p class="second">Texas</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>Dallas</strong></p>
+                        <p class="second">Texas</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xsm-12">
+                        <p><strong>See More</strong></p>
+                        <p class="second"></p>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+
+           
+  </div>
+
+   <div class="table-responsive-sm">
+                <table class="table table-borderless w-100">
+                    <thead>
+                        <tr>
+                            <th>Support</th>
+                            <th>Hosting</th>
+                            <th>Airbnb</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Help Center</td>
+                            <td>Airbnb your home</td>
+                            <td>Newsroom</td>
+                        </tr>
+                        <tr>
+                            <td>AirCover</td>
+                            <td>AirCover for Hosts</td>
+                            <td>New Features</td>
+                        </tr>
+                        <tr>
+                            <td>Anti-discrimination</td>
+                            <td>Hosting Resources</td>
+                            <td>Careers</td>
+                        </tr>
+                        <tr>
+                            <td>Disability Support</td>
+                            <td>Community Forum</td>
+                            <td>Investors</td>
+                        </tr>
+                        <tr>
+                            <td>Cancellation Options</td>
+                            <td>Hosting Responsibily</td>
+                            <td>Gift Cards</td>
+                        </tr>
+                        <tr>
+                            <td>Report Neigbourhood Concerns</td>
+                            <td>Airbnb-friendly environment</td>
+                            <td>Airbnb.org emergency stays</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Join a free hosting class</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Find a co-host</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-muted">
+              <hr>
+            </div>
+
+            <div class="anchor mt-1 mb-1 d-flex justify-content-between align-items-center">
+              <div>
+                &copy;<a href="">2025 Airbnb, Inc.</a>
+                <a href="#">Terms</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Privacy</a>
+                <a href="#">Your privacy choices</a>
+                </div>
+                <span class="icon d-flex gap-2">
+                    <a href="#"><i class="bi bi-globe2"></i>English(US)</a>
+                    <a href="#"><i class="bi bi-currency-dollar">USD</i></a>
+                    <a href="#" class="anc"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="anc"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="anc"><i class="bi bi-instagram"></i></a>
+                </span>
+            </div>
+</section>
+
+<script src="test.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+</body>
+</html>
