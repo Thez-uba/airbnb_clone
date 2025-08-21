@@ -31,25 +31,61 @@
     overflow: hidden;
 } */
 
-.scroll-container {
-    /* display: flex; */
+/* .scroll-container {
     gap: 16px; 
     overflow-x: auto;
     white-space: nowrap;
     scroll-behavior: smooth;
-    /* padding: 10px; */
 }
 
 .scroll-container::-webkit-scrollbar {
-    display: none; /* hide scrollbar */
+    display: none;
+} */
+
+.scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
 }
+
+.scroll-row {
+  display: flex;
+  gap: 12px; /* spacing between cards */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-btn.top-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 
 .card {
     min-width: 250px;
-    /* background: #f9f9f9; */
     border-radius: 12px;
     overflow: hidden;
-    /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
     flex-shrink: 0;
 }
 
@@ -58,31 +94,6 @@
     height: 175px;
     display: grid;
 }
-
-.scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    z-index: 2;
-}
-
-.scroll-btn.left {
-  top: 50px;
-  right: 150px;
-}
-
-.scroll-btn.right {
-  top: 50px;
-  right: 100px;
-}
-
 
 .font{
     font-size: small;
@@ -151,24 +162,6 @@ table{
   text-decoration: none;
 }
 
-/* .icon{
-    padding: 10px;
-    text-decoration: none;
-    position: relative;
-    float: right;
-} */
-
-.scroll-container {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-}
-
-.scroll-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar */
-}
 
 .card {
   flex: 0 0 auto;
@@ -209,4 +202,44 @@ table{
   padding: 5px;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+/* Extra small screens (≤576px) → show 2.25 cards */
+@media (max-width: 576px) {
+  .scroll-row .card {
+    flex: 0 0 45%; /* ~2.25 cards visible */
+  }
+  .scroll-controls {
+    display: none; /* hide arrows */
+  }
+}
+
+/* Small screens (≥576px and ≤768px) → show 4 cards */
+@media (min-width: 577px) and (max-width: 768px) {
+  .scroll-row .card {
+    flex: 0 0 22%; /* ~4 cards visible */
+  }
+  .scroll-controls {
+    display: flex; /* show arrows */
+  }
+}
+
+/* Medium/Large screens (≥769px and ≤1200px) → show 5 cards */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .scroll-row .card {
+    flex: 0 0 18%; /* ~5 cards visible */
+  }
+  .scroll-controls {
+    display: flex;
+  }
+}
+
+/* Extra Large screens (≥1201px) → show 6 cards */
+@media (min-width: 1201px) {
+  .scroll-row .card {
+    flex: 0 0 15%; /* ~6 cards visible */
+  }
+  .scroll-controls {
+    display: flex;
+  }
 }

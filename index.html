@@ -212,14 +212,6 @@
         <i class="bi bi-search text-white"></i>
       </button>
     </div>
-
-    <!-- Mobile: Collapsed Search Button -->
-    <!-- <div class="d-flex justify-content-center mt-2 d-md-none">
-      <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm w-100">
-        <i class="bi bi-search"></i> Where to?
-      </button>
-    </div>
- -->
   </div>
 </nav>
 
@@ -228,8 +220,21 @@
 
 <section>
     <div class="container grid">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Popular homes in Paris</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+    
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -299,13 +304,48 @@
       <p class="fw-semibold">Room in Paris</p>
       <p class="font">$162 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
     </div>
+
+     <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Sandton</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.66</p>
+    </div>
+
+ <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Poplar</p>
+        <p class="font">$182 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">  
     <p class="h5 mt-5 fw-bold">Stay in London</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -346,6 +386,16 @@
       <p class="font">$142 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.96</p>
     </div>
 
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/15ba35ed-d48c-4bfa-b959-06611f96f9e7.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$264 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
+    </div>
+
      <div class="col">
       <div class="position-relative">
       <img src="img1/299559eb-3613-4b16-aed6-79286fa2e771.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -366,6 +416,16 @@
       <p class="font">$165 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
     </div>
 
+    <div class="col">
+      <div class="position-relative">
+      <img src="img1/15ba35ed-d48c-4bfa-b959-06611f96f9e7.avif" height="175px" width="175px" class="rounded-4" alt="">
+      <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+      <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+      </div>
+      <p class="fw-semibold">Room in Paris</p>
+      <p class="font">$264 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
+    </div>
+
      <div class="col">
       <div class="position-relative">
       <img src="img1/2caf784c-7bfe-4098-8be0-99735e95cec9.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -375,14 +435,27 @@
       <p class="fw-semibold">Room in London</p>
       <p class="font">$233 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.9</p>
     </div>
-
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Places to stay in Sao Paulo</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+    
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -411,6 +484,16 @@
       </div>
       <p class="fw-semibold">Apartment in Bom Retiro</p>
       <p class="font">$81 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.91</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Poplar</p>
+        <p class="font">$182 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
     </div>
 
      <div class="col">
@@ -453,13 +536,37 @@
       <p class="font">$49 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Poplar</p>
+        <p class="font">$182 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Places to stay in Seoul</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -488,6 +595,26 @@
       </div>
       <p class="fw-semibold">Home in Seoul</p>
       <p class="font">$643 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+     <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Bela Vista</p>
+        <p class="font">$86 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
+    </div>
+
+     <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Bela Vista</p>
+        <p class="font">$86 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
     </div>
 
      <div class="col">
@@ -529,14 +656,27 @@
       <p class="fw-semibold">Room in Jongno-gu</p>
       <p class="font">$172 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"> 4.94</i></p>
     </div>
-
+    <div class="scroll-row">
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Homes in Toronto</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -565,6 +705,16 @@
       </div>
       <p class="fw-semibold">Room in Forest Hill</p>
       <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+     <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Guesthouse in Seoul</p>
+        <p class="font">$110 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
     </div>
 
      <div class="col">
@@ -607,13 +757,37 @@
       <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
     </div>
 
+     <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Guesthouse in Seoul</p>
+        <p class="font">$110 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Stay in Cape Town</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class=" scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -642,6 +816,16 @@
       </div>
       <p class="fw-semibold">Apartment in Gardens</p>
       <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.88</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Yorkville</p>
+        <p class="font">$123 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.87</p>
     </div>
 
      <div class="col">
@@ -684,13 +868,37 @@
       <p class="font">$185 for in nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.59</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Yorkville</p>
+        <p class="font">$123 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.87</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
-<!-- <section>
+<section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Places to stay in Ikeja</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -719,6 +927,16 @@
       </div>
       <p class="fw-semibold">Room in Magodo</p>
       <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.55</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Camps Bay</p>
+        <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
     </div>
 
      <div class="col">
@@ -751,6 +969,16 @@
       <p class="font">$95 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Camps Bay</p>
+        <p class="font">$100 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
+    </div>
+
      <div class="col">
       <div class="position-relative">
       <img src="img1/2caf784c-7bfe-4098-8be0-99735e95cec9.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -760,14 +988,27 @@
       <p class="fw-semibold">Room in Maryland</p>
       <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
     </div>
-
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Check out homes in Abuja</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -796,6 +1037,16 @@
       </div>
       <p class="fw-semibold">Room in Guzape</p>
       <p class="font">$150 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 5.0</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Ikeja</p>
+        <p class="font">$70 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
     </div>
 
      <div class="col">
@@ -838,13 +1089,37 @@
       <p class="font">$85 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.85</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/18bdf621-7e59-42c9-bc62-e0f55ffdfd35.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Ikeja</p>
+        <p class="font">$70 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.0</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Popular homes in Johannesburg</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -873,6 +1148,16 @@
       </div>
       <p class="fw-semibold">Apartment in Melville</p>
       <p class="font">$190 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.67</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Maitama</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
     </div>
 
      <div class="col">
@@ -915,13 +1200,37 @@
       <p class="font">$300 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.89</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/2e8366cd-3cbb-435d-a5ad-41cb1a71cf45.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Room in Maitama</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+    </div>
     </div>
 </section>
 
 <section>
     <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-2">
     <p class="h5 mt-5 fw-bold">Stay in Calgary</p>
-    <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+     <div class="scroll-controls d-flex">
+        <button class="scroll-btn top-btn scroll-left" onclick="scrollLeft()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="scroll-btn top-btn scroll-right" onclick="scrollRight()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      </div>
+
+    <div class="scroll-container row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+    <div class="scroll-row">
     <div class="col">
         <div class="position-relative">
         <img src="img1/4f625642-5682-40fd-84fa-a5d7d2cf8deb.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -940,6 +1249,16 @@
       </div>
       <p class="fw-semibold">Room in Bayview</p>
       <p class="font">$165 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.90</p>
+    </div>
+
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Sandton</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.66</p>
     </div>
 
      <div class="col">
@@ -982,6 +1301,16 @@
       <p class="font">$235 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
     </div>
 
+    <div class="col">
+        <div class="position-relative">
+        <img src="img1/42d5a276-0230-4adb-8abd-d8c12b8a9bac.avif" height="175px" width="175px" class="rounded-4" alt="">
+        <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
+        <div class="rounded-circle position-absolute top-0 end-0" style="background-color: rgba(0,0,0,0.5); font-size: 16px; padding: 4px 6px;"><i class="bi bi-heart"></i></div>
+        </div>
+        <p class="fw-semibold">Apartment in Sandton</p>
+        <p class="font">$120 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.66</p>
+    </div>
+
      <div class="col mb-5">
       <div class="position-relative">
       <img src="img1/680af723-aee7-4661-b224-d92b2569feab.avif" height="175px" width="175px" class="rounded-4" alt="">
@@ -991,10 +1320,10 @@
       <p class="fw-semibold">Room in Calgary</p>
       <p class="font">$210 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.95</p>
     </div>
-
+    </div>
     </div>
 </section>
- -->
+
 <section class="container-fluid" style="background-color: rgb(240, 239, 239);">
 
   <div class="container-fluid" style="background-color: rgb(240, 239, 239);">
