@@ -212,6 +212,9 @@ table{
   .scroll-controls {
     display: none; /* hide arrows */
   }
+  .card {
+  min-width: calc(100% / 2.25);
+}
 }
 
 /* Small screens (≥576px and ≤768px) → show 4 cards */
@@ -221,6 +224,9 @@ table{
   }
   .scroll-controls {
     display: flex; /* show arrows */
+  }
+  .card {
+    min-width: calc(100% / 4);
   }
 }
 
@@ -232,6 +238,9 @@ table{
   .scroll-controls {
     display: flex;
   }
+  .card {
+    min-width: calc(100% / 5);
+  }
 }
 
 /* Extra Large screens (≥1201px) → show 6 cards */
@@ -241,5 +250,8 @@ table{
   }
   .scroll-controls {
     display: flex;
+  }
+  .card {
+    min-width: calc(100% / 6);
   }
 }
