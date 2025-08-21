@@ -121,6 +121,7 @@ table{
     text-align: justify;
     width: 100%;
     margin-bottom: 50px;
+    background-color: rgb(240, 239, 239);
 }
 
 .anchor a{

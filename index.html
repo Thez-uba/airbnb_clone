@@ -62,6 +62,8 @@
   to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
+
+
   </style>
 </head>
 <body class="bg-light">
@@ -107,18 +109,6 @@
         <button class="btn btn-light rounded-circle" id="openPopover">
           <i class="bi bi-globe2"></i>
         </button>
-
-        <!-- <div class="popover-backdrop d-none" id="popoverBackdrop"></div> -->
-          <!-- Center Popover -->
-          <!-- <div class="popover-center d-none" id="popoverBox">
-            <h5 class="mb-3">Choose a language</h5>
-            <p class="mb-0">English</p>
-            <hr>
-            <p class="mb-0">More languages coming soon...</p>
-            <div class="text-end mt-3">
-              <button class="btn btn-sm btn-outline-secondary" id="closePopover">Close</button>
-            </div>
-        </div> -->
 
 <!-- Backdrop -->
 <div id="popoverBackdrop" class="popover-backdrop d-none"></div>
@@ -239,9 +229,8 @@
 <section>
     <div class="container grid">
     <p class="h5 mt-5 fw-bold">Popular homes in Paris</p>
-    <div class="scroll-container">
     <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
-    <div class="col card bg-light">
+    <div class="col">
         <div class="position-relative">
         <img src="img1/034ffd46-e6b9-47a5-9f1c-b33a83004406.avif" height="175px" width="175px" class="rounded-4" alt="">
         <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -251,7 +240,7 @@
         <p class="font">$239 for 2 nights <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.76</p>
     </div>
 
-    <div class="col card bg-light">
+    <div class="col">
       <div class="position-relative">
       <img src="img1/09836213-5cb1-42da-aa42-41bdc6b4572a.avif" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -261,7 +250,7 @@
       <p class="font">$155 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.82</p>
     </div>
 
-     <div class="col card bg-light">
+     <div class="col">
       <div class="position-relative">
       <img src="img1/12bc582a-d987-4ab1-9ac8-da16c5f4fc6e.webp" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -271,7 +260,7 @@
       <p class="font">$136 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.96</p>
     </div>
 
-     <div class="col card bg-light">
+     <div class="col">
       <div class="position-relative">
       <img src="img1/1347ba81-0b40-4735-a2b7-1d50b0f8a998.avif" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -281,7 +270,7 @@
       <p class="font">$202 for 2 nights<i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.83</p>
     </div>
 
-     <div class="col card bg-light">
+     <div class="col">
       <div class="position-relative">
       <img src="img1/15341d99-a35c-47a6-86fe-4b67787426c8.avif" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -291,7 +280,7 @@
       <p class="font">$135 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.92</p>
     </div>
 
-     <div class="col card bg-light">
+     <div class="col">
       <div class="position-relative">
       <img src="img1/15ba35ed-d48c-4bfa-b959-06611f96f9e7.avif" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -301,7 +290,7 @@
       <p class="font">$264 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.98</p>
     </div>
 
-     <div class="col card bg-light">
+     <div class="col">
       <div class="position-relative">
       <img src="img1/165f2af7-a79f-44fd-936e-de18eb32994d.avif" height="175px" width="175px" class="rounded-4" alt="">
       <div class="rounded-pill position-absolute top-0 start-0" style="background-color: rgb(240, 239, 239); font-size: 11px; padding: 6px 12px;">Guest favourite</div>
@@ -310,8 +299,6 @@
       <p class="fw-semibold">Room in Paris</p>
       <p class="font">$162 for 2 night <i class="bi bi-dot"></i> <i class="bi bi-star-fill"></i> 4.94</p>
     </div>
-    </div>
-
     </div>
 </section>
 
@@ -700,7 +687,7 @@
     </div>
 </section>
 
-<section>
+<!-- <section>
     <div class="container">
     <p class="h5 mt-5 fw-bold">Places to stay in Ikeja</p>
     <div class="row g-0 d-grid gap-0 column-gap-0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
@@ -1007,7 +994,7 @@
 
     </div>
 </section>
-
+ -->
 <section class="container-fluid" style="background-color: rgb(240, 239, 239);">
 
   <div class="container-fluid" style="background-color: rgb(240, 239, 239);">
@@ -1282,7 +1269,7 @@
                 </span>
             </div>
 </section>
-<h2>Designed by: Thelma Chidimma Uba.</h2>
+<h4>Designed by: Thelma Chidimma Uba.</h4>
 
 <script src="test.js"></script>
 <script src="bootstrap.bundle.min.js"></script>

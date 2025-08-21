@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airbnb Login Modal</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="test.css">
+  <style>
+    .login-modal .modal-dialog {
+      max-width: 500px;
+    }
+    .login-modal .modal-content {
+      border-radius: 12px;
+      max-height: 90vh; 
+      display: flex;
+      flex-direction: column;
+    }
+    .login-modal .modal-header {
+      flex-shrink: 0;
+      border-bottom: 1px solid #ddd;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .login-modal .modal-body {
+      overflow-y: auto;
+    }
+    .btn-airbnb {
+      background: linear-gradient(90deg, #e61e4d, #e31c5f, #d70466);
+      color: white;
+      font-weight: 600;
+    }
+    .btn-airbnb:hover {
+      background: #d70466;
+      color: white;
+    }
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+    }
+    .body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      width: 600px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .form-container h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-continue {
+      background-color: #FF385C;
+      color: white;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 16px 0;
+      color: #777;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid #ccc;
+      background: white;
+      font-weight: bold;
+    }
+
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .privacy {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .privacy a {
+      color: #000;
+      text-decoration: underline;
+    }
+
+     .side-dropdown {
+      position: absolute;
+      top: 100px; /* adjust to navbar height */
+      right: 20px;
+      background: white;
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      width: 250px;
+      display: none;
+      z-index: 9999;
+    }
+
+    .side-dropdown.show {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .side-dropdown hr {
+      margin: 0.75rem 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .popover-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+.popover-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  max-width: 500px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  z-index: 1050;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: popIn 0.25s ease;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+  </style>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg shadow-sm sticky-top py-3" style="background-color: rgb(240, 239, 239);">
+  <div class="container-fluid flex-column px-4">
+    <!-- Top Row -->
+    <div class="d-flex justify-content-between align-items-center w-100 py-2">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" width="100" alt="Airbnb">
+    </a>
+
+    <!-- Right Section -->
+   <div class="d-flex align-items-center gap-3">
+        <a href="#" class="fw-bold text-dark d-none d-md-block text-decoration-none">Become a host</a>
+        <button class="btn btn-light rounded-circle">
+          <i class="bi bi-globe2"></i>
+        </button>
+        <button id="menuBtn" class="btn btn-light rounded-circle">
+          <i class="bi bi-list" style="font-size: 1.2rem;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Panel -->
+  <div id="sideDropdown" class="side-dropdown">
+    <a href="Help.html" class="text-decoration-none text-dark">
+    <p><i class="bi bi-question-circle"></i> Help Center</p>
+    </a>
+    <hr>
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <strong>Become a host</strong><br>
+        <small>It's easy to start hosting and earn extra income.</small>
+      </div>
+      <img src="img1/download (2).png" alt="Host" style="width:50px; height:40px; border-radius:8px;">
+    </div>
+    <hr>
+    <p>Find a co-host</p>
+    <p>Gift cards</p>
+    <hr>
+    <p>Log in or sign up</p>
+  </div>
+  </div>
+  </nav>
+
+<div class="body">
+<div class="form-container">
+    <h2>Log in or sign up</h2>
+    <h3>Welcome to Airbnb</h3>
+    
+    <label for="country">Country code</label>
+    <select id="country">
+      <option value="+234">Nigeria (+234)</option>
+      <option value="+1">United States (+1)</option>
+      <option value="+44">United Kingdom (+44)</option>
+    </select>
+    
+    <input type="text" placeholder="Phone number">
+    
+    <p class="privacy">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="#">Privacy Policy</a></p>
+    
+    <button class="btn btn-continue">Continue</button>
+    
+    <div class="divider">or</div>
+    
+    <button class="btn social-btn">
+      <img src="img1/icons8-google-48.png" alt="Google"> Continue with Google
+    </button>
+    
+    <button class="btn social-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"> Continue with Apple
+    </button>
+    
+    <button class="btn social-btn">
+      <img src="img1/icons8-gmail-48.png" alt="Email"> Continue with email
+    </button>
+
+    <button class="btn social-btn">
+     <img src="https://img.icons8.com/fluency/24/facebook-new.png"> Continue with Facebook
+    </button>
+  </div>
+  </div>
+
+  <div class="table-responsive-sm">
+                <table class="table table-borderless w-100">
+                    <thead>
+                        <tr>
+                            <th>Support</th>
+                            <th>Hosting</th>
+                            <th>Airbnb</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Help Center</td>
+                            <td>Airbnb your home</td>
+                            <td>Newsroom</td>
+                        </tr>
+                        <tr>
+                            <td>AirCover</td>
+                            <td>AirCover for Hosts</td>
+                            <td>New Features</td>
+                        </tr>
+                        <tr>
+                            <td>Anti-discrimination</td>
+                            <td>Hosting Resources</td>
+                            <td>Careers</td>
+                        </tr>
+                        <tr>
+                            <td>Disability Support</td>
+                            <td>Community Forum</td>
+                            <td>Investors</td>
+                        </tr>
+                        <tr>
+                            <td>Cancellation Options</td>
+                            <td>Hosting Responsibily</td>
+                            <td>Gift Cards</td>
+                        </tr>
+                        <tr>
+                            <td>Report Neigbourhood Concerns</td>
+                            <td>Airbnb-friendly environment</td>
+                            <td>Airbnb.org emergency stays</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Join a free hosting class</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Find a co-host</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-muted">
+              <hr>
+            </div>
+
+            <div class="anchor mt-1 mb-1 d-flex justify-content-between align-items-center">
+              <div>
+                &copy;<a href="">2025 Airbnb, Inc.</a>
+                <a href="#">Terms</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Privacy</a>
+                <a href="#">Your privacy choices</a>
+                </div>
+                <span class="icon d-flex gap-2">
+                    <a href="#"><i class="bi bi-globe2"></i>English(US)</a>
+                    <a href="#"><i class="bi bi-currency-dollar">USD</i></a>
+                    <a href="#" class="anc"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="anc"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="anc"><i class="bi bi-instagram"></i></a>
+                </span>
+            </div>
+</section>
+<h4>Designed by: Thelma Chidimma Uba.</h4>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script  src="test.js"></script>
+</body>
+</html>
