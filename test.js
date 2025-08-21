@@ -68,3 +68,54 @@ closeBtn.addEventListener('click', closePopover);
 backdrop.addEventListener('click', closePopover);
 
 
+  let lastScrollY = window.scrollY;
+  const bottomNav = document.querySelector('.bottom-nav');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+      // scrolling down → hide
+      bottomNav.style.transform = 'translateY(100%)';
+    } else {
+      // scrolling up → show
+      bottomNav.style.transform = 'translateY(0)';
+    }
+    lastScrollY = window.scrollY;
+  });
+
+  /* const navbar = document.querySelector(".nav-bar");
+  const searchBar = document.querySelector(".search-bar");
+  const compactSearch = document.querySelector(".compact-search");
+
+  let lastScrollTop = 0;
+
+  window.addEventListener("scroll", function() {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      // Scrolling down → show compact, hide full search
+      searchBar.classList.add("d-none");
+      compactSearch.classList.remove("d-none");
+      navbar.classList.add("navbar-compact");
+    } else {
+      // Scrolling up (towards top) → restore full navbar
+      if (scrollTop < 50) { // only when near top
+        searchBar.classList.remove("d-none");
+        compactSearch.classList.add("d-none");
+        navbar.classList.remove("navbar-compact");
+      }
+    }
+    
+    if (scrollTop > 50) {
+      // After scrolling down: hide big search, show compact
+      searchBar.classList.add("d-none");
+      compactSearch.classList.remove("d-none");
+      navbar.classList.add("navbar-compact");
+    } else {
+      // Back at top: show full search, hide compact
+      searchBar.classList.remove("d-none");
+      compactSearch.classList.add("d-none");
+      navbar.classList.remove("navbar-compact");
+    }
+
+    lastScrollTop = scrollTop;
+  }); */

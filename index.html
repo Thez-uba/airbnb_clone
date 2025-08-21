@@ -8,6 +8,22 @@
   <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <style>
+    .search-bar {
+  width: 100%;          /* Always take full width of parent */
+  max-width: 1200px;    /* Prevent stretching too much on very wide screens */
+}
+
+.search-item {
+  flex: 1;              /* Each item grows equally */
+  min-width: 0;         /* Prevent overflow shrinking */
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgb(226, 225, 225);
+}
+
      .side-dropdown {
       position: absolute;
       top: 100px; /* adjust to navbar height */
@@ -72,17 +88,35 @@
 <nav class="navbar navbar-expand-lg shadow-sm sticky-top py-3" style="background-color: rgb(240, 239, 239);">
   <div class="container-fluid flex-column px-4">
 
-    <div class="d-sm-block d-md-none px-3 mt-2">
-  <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm w-100">
+    <!-- <div class="d-sm-block d-md-none px-3 mt-2 text-center">
+  <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm" style="width: 85%; max-width: 500px;">
+    <i class="bi bi-search"></i> Start your search
+  </button>
+</div> -->
+<div class="d-sm-block d-md-none px-3 mt-2 text-center">
+  <button class="btn btn-light rounded-pill px-3 py-2 shadow-sm" style="width: calc(85vw); max-width: 600px;">
     <i class="bi bi-search"></i> Start your search
   </button>
 </div>
+
     <!-- Top Row -->
     <div class="d-flex justify-content-between align-items-center w-100 py-2">
     <!-- Logo -->
-    <a class="navbar-brand d-none d-md-block" href="#">
+    <a class="navbar-brand d-none d-lg-block" href="#">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" width="100" alt="Airbnb">
     </a>
+
+    <!-- Icon-only logo: show on md screens only -->
+    <a class="navbar-brand d-none d-md-block d-lg-none" href="#">
+      <img src="img1/icons8-airbnb-48.png" width="40" alt="Airbnb Icon">
+    </a>
+        <!-- Compact Search Button (hidden initially) -->
+    <!-- <div class="compact-search d-none">
+      <button class="btn btn-light shadow-sm rounded-pill px-3 py-2">
+        <i class="bi bi-search"></i> Where to?
+      </button>
+    </div>
+ -->
 
     <!-- Menu Tabs -->
     <ul class="nav nav-underline mx-auto d-flex justify-content-between align-items-center d-sm-flex mt-2">
@@ -104,11 +138,21 @@
     </ul>
 
     <!-- Right Section -->
-   <div class="d-flex align-items-center gap-3 d-none d-md-flex">
+   <!-- <div class="d-flex align-items-center gap-3 d-none d-md-flex">
         <a href="#" class="fw-bold text-dark d-none d-md-block text-decoration-none">Become a host</a>
         <button class="btn btn-light rounded-circle" id="openPopover">
           <i class="bi bi-globe2"></i>
-        </button>
+        </button> -->
+
+        <!-- Right Section -->
+<div class="d-flex align-items-center gap-3 d-none d-md-flex">
+  <!-- Hide on md screens, show lg+ -->
+  <a href="#" class="fw-bold text-dark d-none d-lg-block text-decoration-none">Become a host</a>
+
+  <button class="btn btn-light rounded-circle" id="openPopover">
+    <i class="bi bi-globe2"></i>
+  </button>
+
 
 <!-- Backdrop -->
 <div id="popoverBackdrop" class="popover-backdrop d-none"></div>
@@ -186,7 +230,7 @@
   </div>
 
 <!-- Bottom Row: Search Bar -->
-<div class="search-bar shadow-sm mt-2 d-none d-md-flex bg-white shadow rounded-pill d-flex align-items-center px-3 py-2">
+<div class="search-bar shadow-sm mt-2 d-none d-md-flex bg-white shadow rounded-pill d-flex align-items-center px-3 py-2" style="max-width: 1000px; margin: 0 auto;">
 <!-- <div class="d-flex justify-content-center mt-4 search-bar-wrapper"> -->
   <!-- <div class="bg-white shadow rounded-pill d-flex align-items-center px-3 py-2" style="width: 800px;"> -->
     <div class="search-item px-4 pe-5 d-flex flex-column">
@@ -1598,9 +1642,35 @@
                 </span>
             </div>
 </section>
+
+
+
+
 <h4>Designed by: Thelma Chidimma Uba.</h4>
 
 <script src="test.js"></script>
 <script src="bootstrap.bundle.min.js"></script>
+<div class="bottom-nav d-flex d-md-none justify-content-around align-items-center">
+  <a href="#" class="active">
+    <i class="bi bi-search"></i>
+    <span>Explore</span>
+  </a>
+  <a href="#">
+    <i class="bi bi-heart"></i>
+    <span>Wishlists</span>
+  </a>
+  <a href="#">
+    <i class="bi bi-plus-circle"></i>
+    <span>Trips</span>
+  </a>
+  <a href="#">
+    <i class="bi bi-chat-dots"></i>
+    <span>Messages</span>
+  </a>
+  <a href="#">
+    <i class="bi bi-person"></i>
+    <span>Profile</span>
+  </a>
+</div>
 </body>
 </html>

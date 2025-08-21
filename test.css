@@ -255,3 +255,66 @@ table{
     min-width: calc(100% / 6);
   }
 }
+
+/* Default: hidden */
+.bottom-nav {
+  display: none;
+}
+
+/* Mobile only (extra small + small screens) */
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bottom-nav a i {
+    font-size: 1.3rem;
+  }
+
+  .bottom-nav a:hover {
+    color: #ff385c; /* Airbnb accent */
+  }
+}
+
+.bottom-nav a.active {
+  color: #ff385c; /* Airbnb pink/red */
+  font-weight: 600;
+}
+
+.bottom-nav a.active i {
+  color: #ff385c;
+}
+
+/* .compact-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar.navbar-compact {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  transition: all 0.3s ease;
+}
+ */
